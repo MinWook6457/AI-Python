@@ -16,15 +16,15 @@ class Chromosome :
                 else: self.genes.append(0)
                 i+=1
 
-    def cal_fitness(self):
+    def cal_fitness(self): 
         self.fitness = 0
         value = 0
-        for i in range(SIZE):
+        for i in range(SIZE): # 이진수 계산
             value += self.genes[i]*pow(2,SIZE-1-i)
         self.fitness = value
         return self.fitness
     
-    def __str__(self):
+    def __str__(self): # 객체를 문자열로 변환하여 반환
         return self.genes.__str__()
     
 # 염색체와 적합도를 출력
@@ -37,7 +37,7 @@ def print_p(pop):
 
 # 선택 연산
 def select(pop):
-    max_value = sum([c.cal_fitness() for c in population])
+    max_value = sum([c.cal_fitness() for c in population]) 
     pick = random.uniform(0,max_value)
     current = 0
 
@@ -51,7 +51,7 @@ def select(pop):
 def crossover(pop):
     father = select(pop)
     mother = select(pop)
-    index = random.randint(1,SIZE-1)
+    index = random.randint(1,SIZE-1) # 1 부터 SIZE -1 사이의 정수 랜덤 반환
     child1 = father.genes[:index] + mother.genes[index:]
     child2 = mother.genes[:index] + father.genes[index:]
     return (child1,child2)
@@ -59,7 +59,7 @@ def crossover(pop):
 # 돌연변이 연산
 def mutate(c):
     for i in range(SIZE): # i += 1
-        if random.random() < MUTATION_RATE:
+        if random.random() < MUTATION_RATE: # random.random() 0.0 ~ 1.0 사이의 float형 랜덤 반환
             if random.random() < 0.5:
                 c.genes[i] = 1
             else:
@@ -71,7 +71,7 @@ i = 0
 
 # 초기 염색체를 생성하여 객체 집단에 추가
 
-while i < POPULATION_SIZE:
+while i < POPULATION_SIZE: # population 리스트에 염색체 추가
    population.append(Chromosome())
    i+=1
 
@@ -81,7 +81,7 @@ print("세대 번호 = ",count)
 print_p(population)
 count = 1
 
-while population[0].cal_fitness() < 31:
+while population[0].cal_fitness() < 31: # 범위 : 0~31 == 적합도가 31이 되면 반복 종료
     new_pop = []
 
     # 선택과 교차 연산
