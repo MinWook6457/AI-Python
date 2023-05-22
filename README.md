@@ -16,5 +16,7 @@
 |138|46|
 |128|38|
 |186|88|
+
+
 ![LinearRegression](https://github.com/MinWook6457/AI-Python/assets/103114126/aa88121f-9d2f-4d8f-93ac-1317d1fc2548)
 
